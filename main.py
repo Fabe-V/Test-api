@@ -4,6 +4,8 @@ import json, time
 app = Flask(__name__)
 
 
+useronline = 110;
+
 @app.route('/', methods=['GET'])
 def website():
     data_set = {'Page': 'Website', 'URL': 'none', 'Server': 'local.host', 'Time': time.time()}
@@ -21,6 +23,12 @@ def user_date():
 
     return json_output
 
+@app.route('/useronline', methods=['GET'])
+def user():
+    user = {'Online User': f'{useronline}'}
+    json_output = json.dumps(user)
+
+    return json_output
 
 if __name__ == '__main__':
     app.run(port=2001)
